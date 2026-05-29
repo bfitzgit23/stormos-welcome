@@ -1,15 +1,11 @@
 # stormos-welcome.install
 post_install() {
+    if [ ! -d "${HOME}/.local/share/stormos/appimages" ]; then
+        mkdir -p "${HOME}/.local/share/stormos/appimages" 2>/dev/null || true
+    fi
+    
     echo ":: StormOS Welcome installed successfully"
-    echo ":: You can run it from the menu or by typing 'stormos-welcome'"
-    echo ""
-    echo "Optional dependencies:"
-    echo "  - yay: For AUR package support"
-    echo "  - flatpak: For Flatpak support"
-    echo "  - snapd: For Snap support"
-    echo "  - calamares: For GUI installer"
-    echo "  - reflector: For mirror ranking"
-    echo "  - pacman-contrib: For cache cleaning"
+    echo ":: Size: ~200KB (Electron is a system dependency)"
 }
 
 post_upgrade() {
