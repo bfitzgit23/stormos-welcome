@@ -1,0 +1,232 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StormOS Welcome</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="storm-icon">🌩️</div>
+                    <div class="title-section">
+                        <h1>StormOS</h1>
+                        <span class="subtitle">Welcome · Arch Linux</span>
+                    </div>
+                </div>
+                <div class="live-badge" id="liveBadge" style="display: none;">
+                    LIVE SESSION
+                </div>
+            </div>
+        </header>
+
+        <div class="tabs-container">
+            <div class="tabs-header">
+                <button class="tab-btn active" data-tab="welcome">🚀 Welcome</button>
+                <button class="tab-btn" data-tab="system">💻 System</button>
+                <button class="tab-btn" data-tab="software">📦 Software</button>
+                <button class="tab-btn" data-tab="maintenance">🔧 Maintenance</button>
+                <button class="tab-btn" data-tab="drivers">🎮 Drivers</button>
+                <button class="tab-btn" data-tab="tweaks">⚙️ Tweaks</button>
+                <button class="tab-btn" data-tab="gaming">🎲 Gaming</button>
+                <button class="tab-btn" data-tab="settings">⚙️ Settings</button>
+                <button class="tab-btn" data-tab="help">❓ Help</button>
+            </div>
+
+            <!-- Welcome Tab -->
+            <div class="tab-content active" id="welcome-tab">
+                <div class="welcome-section">
+                    <h2>Welcome to StormOS</h2>
+                    <p class="description">A refined Arch Linux experience focused on performance, elegance, and control.</p>
+                    
+                    <div class="card">
+                        <h3>💿 Install StormOS</h3>
+                        <button class="btn-primary" id="launchInstallerBtn">Launch Installer (Calamares)</button>
+                        <p class="hint" id="installerHint">Runs the graphical installer to install StormOS to disk.</p>
+                    </div>
+
+                    <div class="card" id="autostartCard" style="display: none;">
+                        <h3>🔄 Autostart</h3>
+                        <div class="autostart-status" id="autostartStatus"></div>
+                        <p>You can control whether this welcome app launches automatically when you log in to your desktop.</p>
+                        <div class="button-group">
+                            <button class="btn-secondary" id="enableAutostartBtn">Enable autostart</button>
+                            <button class="btn-secondary" id="disableAutostartBtn">Disable autostart</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>🔗 Quick Links</h3>
+                        <div class="link-buttons">
+                            <button class="btn-link" data-url="https://wiki.archlinux.org">Arch Wiki</button>
+                            <button class="btn-link" data-url="https://bbs.archlinux.org">Arch Forums</button>
+                            <button class="btn-link" data-url="https://aur.archlinux.org">AUR</button>
+                            <button class="btn-link" data-url="https://github.com/stormos">StormOS GitHub</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- System Tab -->
+            <div class="tab-content" id="system-tab">
+                <div class="card">
+                    <h3>⚡ System Actions</h3>
+                    <div class="action-buttons">
+                        <button class="btn-action" data-cmd='["sudo","pacman","-Syu"]' data-title="Update System">⟳ Update System (pacman -Syu)</button>
+                        <button class="btn-action" data-cmd='["yay","-Syu"]' data-title="Update AUR">⟳ Update System + AUR (yay -Syu)</button>
+                        <button class="btn-action" data-cmd='["sudo","reboot"]' data-title="Reboot">🔁 Reboot</button>
+                        <button class="btn-action" data-cmd='["sudo","shutdown","-h","now"]' data-title="Shutdown">⏻ Shutdown</button>
+                    </div>
+                    <p class="note">Note: commands open in terminal (xfce4-terminal must be installed).</p>
+                </div>
+            </div>
+
+            <!-- Software Tab -->
+            <div class="tab-content" id="software-tab">
+                <div class="software-center">
+                    <div class="software-header">
+                        <h3>📦 Software Center</h3>
+                        <div class="backend-status" id="backendStatus">Loading...</div>
+                    </div>
+                    
+                    <div class="search-bar">
+                        <input type="text" id="searchInput" placeholder="Search for apps and packages...">
+                        <select id="sourceSelect">
+                            <option value="all">All</option>
+                            <option value="pacman">Pacman</option>
+                            <option value="aur">AUR (yay)</option>
+                        </select>
+                        <button id="searchBtn" class="btn-small">Search</button>
+                        <button id="installedBtn" class="btn-small">Installed</button>
+                    </div>
+
+                    <div class="software-list-container">
+                        <div class="software-list" id="softwareList">
+                            <div class="loading">Loading software list...</div>
+                        </div>
+                        <div class="software-details" id="softwareDetails">
+                            <h4 id="detailsTitle">Select an item</h4>
+                            <div id="detailsText" class="details-text">Select an item to see details.</div>
+                            <div class="details-buttons">
+                                <button id="installBtn" class="btn-small" disabled>Install</button>
+                                <button id="removeBtn" class="btn-small" disabled>Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Maintenance Tab -->
+            <div class="tab-content" id="maintenance-tab">
+                <div class="card">
+                    <h3>🧹 Package Cache</h3>
+                    <button class="btn-action" data-cmd='["sudo","paccache","-r"]' data-title="Clear Cache">Clear pacman cache (keep last 3 versions)</button>
+                    <button class="btn-action" data-cmd='["sudo","pacman","-Scc"]' data-title="Clear All Cache">Clear ALL pacman cache</button>
+                    <button class="btn-action" data-cmd='["bash","-c","sudo pacman -Rns $(pacman -Qdtq) 2>/dev/null || echo No orphans."]' data-title="Remove Orphans">Remove orphaned packages</button>
+                </div>
+
+                <div class="card">
+                    <h3>🪞 Mirrors & Sync</h3>
+                    <button class="btn-action" data-cmd='["sudo","reflector","--latest","20","--protocol","https","--sort","rate","--save","/etc/pacman.d/mirrorlist"]' data-title="Rank Mirrors">Rank mirrors (reflector)</button>
+                    <button class="btn-action" data-cmd='["sudo","pacman","-Syy"]' data-title="Sync DB">Force pacman database sync</button>
+                </div>
+
+                <div class="card">
+                    <h3>🔑 Keyring</h3>
+                    <button class="btn-action" data-cmd='["sudo","pacman","-S","--needed","archlinux-keyring"]' data-title="Refresh Keys">Refresh keyring</button>
+                </div>
+            </div>
+
+            <!-- Drivers Tab -->
+            <div class="tab-content" id="drivers-tab">
+                <div class="card">
+                    <h3>🎮 NVIDIA</h3>
+                    <button class="btn-action" data-cmd='["sudo","pacman","-S","--needed","nvidia","nvidia-utils","nvidia-settings","lib32-nvidia-utils"]' data-title="Install NVIDIA">NVIDIA (proprietary)</button>
+                    <button class="btn-action" data-cmd='["sudo","pacman","-S","--needed","nvidia-dkms","nvidia-utils","nvidia-settings"]' data-title="Install NVIDIA DKMS">NVIDIA DKMS</button>
+                </div>
+
+                <div class="card">
+                    <h3>🟠 AMD</h3>
+                    <button class="btn-action" data-cmd='["sudo","pacman","-S","--needed","xf86-video-amdgpu","mesa","lib32-mesa","vulkan-radeon","lib32-vulkan-radeon"]' data-title="Install AMDGPU">AMDGPU (modern)</button>
+                </div>
+
+                <div class="card">
+                    <h3>🔵 Intel</h3>
+                    <button class="btn-action" data-cmd='["sudo","pacman","-S","--needed","mesa","lib32-mesa","intel-media-driver","vulkan-intel","lib32-vulkan-intel"]' data-title="Install Intel">Intel (modesetting + VA-API)</button>
+                </div>
+            </div>
+
+            <!-- Tweaks Tab -->
+            <div class="tab-content" id="tweaks-tab">
+                <div class="card">
+                    <h3>🐚 Shell Setup</h3>
+                    <button class="btn-action" data-cmd='["sudo","pacman","-S","--needed","zsh"]' data-title="Install Zsh">Install Zsh</button>
+                    <button class="btn-action" data-cmd='["sudo","pacman","-S","--needed","fish"]' data-title="Install Fish">Install Fish shell</button>
+                </div>
+
+                <div class="card">
+                    <h3>🎨 Boot & Plymouth</h3>
+                    <button class="btn-action" data-cmd='["sudo","pacman","-S","--needed","plymouth"]' data-title="Install Plymouth">Install Plymouth</button>
+                    <button class="btn-action" data-cmd='["sudo","mkinitcpio","-P"]' data-title="Rebuild initramfs">Rebuild initramfs</button>
+                </div>
+            </div>
+
+            <!-- Gaming Tab -->
+            <div class="tab-content" id="gaming-tab">
+                <div class="card">
+                    <h3>🎮 Game Platforms</h3>
+                    <button class="btn-action" data-cmd='["sudo","pacman","-S","--needed","steam","steam-native-runtime"]' data-title="Install Steam">Steam</button>
+                    <button class="btn-action" data-cmd='["sudo","pacman","-S","--needed","lutris"]' data-title="Install Lutris">Lutris</button>
+                </div>
+
+                <div class="card">
+                    <h3>🍷 Wine & Proton</h3>
+                    <button class="btn-action" data-cmd='["sudo","pacman","-S","--needed","wine-staging","wine-mono","wine-gecko"]' data-title="Install Wine">Wine (staging)</button>
+                </div>
+            </div>
+
+            <!-- Settings Tab -->
+            <div class="tab-content" id="settings-tab">
+                <div class="card">
+                    <h3>🎨 Appearance</h3>
+                    <div class="setting-row">
+                        <label>Theme:</label>
+                        <select id="themeSelect">
+                            <option value="dark">Dark</option>
+                            <option value="light">Light</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>🖥️ Desktop Tools</h3>
+                    <button class="btn-action" data-cmd='["arandr"]' data-title="Display Settings" data-hold="false">Display Settings (arandr)</button>
+                    <button class="btn-action" data-cmd='["nitrogen"]' data-title="Wallpaper" data-hold="false">Wallpaper (nitrogen)</button>
+                    <button class="btn-action" data-cmd='["nm-connection-editor"]' data-title="Network" data-hold="false">Network (nm-connection-editor)</button>
+                </div>
+            </div>
+
+            <!-- Help Tab -->
+            <div class="tab-content" id="help-tab">
+                <div class="card">
+                    <h3>📚 Help & Resources</h3>
+                    <button class="btn-link" data-url="https://wiki.archlinux.org">Arch Wiki</button>
+                    <button class="btn-link" data-url="https://bbs.archlinux.org">Arch Linux Forums</button>
+                    <button class="btn-about" id="aboutBtn">About StormOS</button>
+                </div>
+            </div>
+        </div>
+
+        <footer class="app-footer">
+            <div class="status" id="statusBar">Ready</div>
+            <div class="env-info" id="envInfo">StormOS · Loading...</div>
+        </footer>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>

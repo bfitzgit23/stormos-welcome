@@ -1,0 +1,22 @@
+pkgbase = stormos-welcome
+	pkgdesc = Modern welcome + software center for StormOS - Electron version
+	pkgver = 2.0.0
+	pkgrel = 1
+	url = https://github.com/bfitzgit23/stormos-welcome
+	arch = x86_64
+	license = MIT
+	makedepends = npm
+	makedepends = node-gyp
+	depends = electron28
+	depends = xfce4-terminal
+	depends = polkit
+	optdepends = yay: AUR support
+	optdepends = flatpak: Flatpak support
+	optdepends = snapd: Snap support
+	optdepends = calamares: GUI installer
+	optdepends = reflector: Mirror ranking
+	optdepends = pacman-contrib: Cache cleaning
+	source = stormos-welcome-2.0.0.tar.gz::https://github.com/stormos/stormos-welcome/archive/v2.0.0.tar.gz
+	sha256sums = SKIP
+
+pkgname = stormos-welcome

@@ -1,0 +1,21 @@
+# stormos-welcome.install
+post_install() {
+    echo ":: StormOS Welcome installed successfully"
+    echo ":: You can run it from the menu or by typing 'stormos-welcome'"
+    echo ""
+    echo "Optional dependencies:"
+    echo "  - yay: For AUR package support"
+    echo "  - flatpak: For Flatpak support"
+    echo "  - snapd: For Snap support"
+    echo "  - calamares: For GUI installer"
+    echo "  - reflector: For mirror ranking"
+    echo "  - pacman-contrib: For cache cleaning"
+}
+
+post_upgrade() {
+    post_install
+}
+
+pre_remove() {
+    echo ":: Removing StormOS Welcome..."
+}

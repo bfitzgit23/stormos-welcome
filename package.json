@@ -1,0 +1,32 @@
+{
+  "name": "stormos-welcome",
+  "version": "2.0.0",
+  "description": "StormOS Welcome - Modern welcome and software center for StormOS",
+  "main": "main.js",
+  "author": {
+    "name": "Bennji",
+    "email": "linuxstormos@gmail.com"
+   },
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "dist": "electron-builder --linux"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.6.4"
+  },
+  "build": {
+    "appId": "com.stormos.welcome",
+    "productName": "StormOS Welcome",
+    "linux": {
+      "target": ["AppImage", "pacman", "deb"],
+      "category": "System",
+      "icon": "build/icon.png"
+    }
+  },
+  "dependencies": {
+    "node-pty": "^0.10.1"
+  }
+}

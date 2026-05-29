@@ -1,0 +1,17 @@
+
+## Building the Electron App
+
+Before building the PKGBUILD, make sure your Electron app source is ready:
+
+```bash
+# Directory structure for the app
+stormos-welcome-2.0.0/
+├── main.js
+├── preload.js
+├── renderer.js
+├── styles.css
+├── index.html
+├── package.json
+├── build/
+│   └── icon.png
+└── node_modules/
