@@ -35,9 +35,10 @@ source=(
     "renderer.js"
 )
 sha256sums=('c37e9138210e97111c53af635d15a4a2e8637e082a8dc90ee89fad9a51f4ccdc'
-            '201cba65a923e3763a8a96c39304e2cb002486a3f2d4d77c72c65bb3c1879d67'
-            'c01fcf1cb269cebb64850d179879bc57d3acc35d779c1f2ac28fc88edcdcfa1a'
-            '75ef1a29db53811c36238d5acaaf1fcec13b8dbba3dea49d1a0766d5bbbfcc1c')
+            '4a423e0d1204f44cd73a4229fbae52a36f3aa33bc74d42aac88c4f5602a42b4d'
+            'fedde903fd089609306aeaa23c59054a74b87da0b286483ba0f91b8d3d7762bc'
+            '75ef1a29db53811c36238d5acaaf1fcec13b8dbba3dea49d1a0766d5bbbfcc1c'
+            '4e225ea36bda6ece4d07f84abffbeed3b99ab0448b572740d783dc063d899602')
 
 prepare() {
     # Create a minimal package.json for production (no electron dependency)
