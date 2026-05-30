@@ -32,8 +32,12 @@ source=(
     "style.css"
     "index.html"
     "package.json"
+    "renderer.js"
 )
-sha256sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
+sha256sums=('c37e9138210e97111c53af635d15a4a2e8637e082a8dc90ee89fad9a51f4ccdc'
+            '201cba65a923e3763a8a96c39304e2cb002486a3f2d4d77c72c65bb3c1879d67'
+            'c01fcf1cb269cebb64850d179879bc57d3acc35d779c1f2ac28fc88edcdcfa1a'
+            '75ef1a29db53811c36238d5acaaf1fcec13b8dbba3dea49d1a0766d5bbbfcc1c')
 
 prepare() {
     # Create a minimal package.json for production (no electron dependency)
@@ -58,6 +62,7 @@ package() {
     install -Dm644 main.js "${pkgdir}/usr/lib/${pkgname}/"
     install -Dm644 style.css "${pkgdir}/usr/lib/${pkgname}/"
     install -Dm644 index.html "${pkgdir}/usr/lib/${pkgname}/"
+    install -Dm644 renderer.js "${pkgdir}/usr/lib/${pkgname}/" 
     install -Dm644 package.json.prod "${pkgdir}/usr/lib/${pkgname}/package.json"
     
     # Copy build directory if it exists (for icons)

@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +6,7 @@
     <title>StormOS Welcome</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="dark">
     <div class="app-container">
         <header class="app-header">
             <div class="header-content">
@@ -51,8 +50,8 @@
 
                     <div class="card" id="autostartCard" style="display: none;">
                         <h3>🔄 Autostart</h3>
-                        <div class="autostart-status" id="autostartStatus"></div>
-                        <p>You can control whether this welcome app launches automatically when you log in to your desktop.</p>
+                        <div id="autostartStatus" class="autostart-status"></div>
+                        <p class="hint">You can control whether this welcome app launches automatically when you log in to your desktop.</p>
                         <div class="button-group">
                             <button class="btn-secondary" id="enableAutostartBtn">Enable autostart</button>
                             <button class="btn-secondary" id="disableAutostartBtn">Disable autostart</button>
@@ -90,7 +89,7 @@
                 <div class="software-center">
                     <div class="software-header">
                         <h3>📦 Software Center</h3>
-                        <div class="backend-status" id="backendStatus">Loading...</div>
+                        <span class="backend-status" id="backendStatus">Loading...</span>
                     </div>
                     
                     <div class="search-bar">
@@ -106,7 +105,7 @@
 
                     <div class="software-list-container">
                         <div class="software-list" id="softwareList">
-                            <div class="loading">Loading software list...</div>
+                            <div class="loading">Click Search to find packages</div>
                         </div>
                         <div class="software-details" id="softwareDetails">
                             <h4 id="detailsTitle">Select an item</h4>
@@ -196,7 +195,7 @@
                     <div class="setting-row">
                         <label>Theme:</label>
                         <select id="themeSelect">
-                            <option value="dark">Dark</option>
+                            <option value="dark">Dark (adw-gtk3-dark)</option>
                             <option value="light">Light</option>
                         </select>
                     </div>
@@ -214,9 +213,11 @@
             <div class="tab-content" id="help-tab">
                 <div class="card">
                     <h3>📚 Help & Resources</h3>
-                    <button class="btn-link" data-url="https://wiki.archlinux.org">Arch Wiki</button>
-                    <button class="btn-link" data-url="https://bbs.archlinux.org">Arch Linux Forums</button>
-                    <button class="btn-about" id="aboutBtn">About StormOS</button>
+                    <div class="link-buttons">
+                        <button class="btn-link" data-url="https://wiki.archlinux.org">Arch Wiki</button>
+                        <button class="btn-link" data-url="https://bbs.archlinux.org">Arch Forums</button>
+                        <button class="btn-link" id="aboutBtn">About StormOS</button>
+                    </div>
                 </div>
             </div>
         </div>
