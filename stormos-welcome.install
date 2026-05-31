@@ -1,11 +1,8 @@
 # stormos-welcome.install
 post_install() {
-    if [ ! -d "${HOME}/.local/share/stormos/appimages" ]; then
-        mkdir -p "${HOME}/.local/share/stormos/appimages" 2>/dev/null || true
-    fi
-    
     echo ":: StormOS Welcome installed successfully"
-    echo ":: Size: ~200KB (Electron is a system dependency)"
+    echo ":: Autostart is enabled by default for all users"
+    echo ":: To disable autostart, open the app and go to Settings"
 }
 
 post_upgrade() {
